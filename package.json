@@ -1,0 +1,28 @@
+{
+  "name": "youtube-lazy-load",
+  "version": "1.0.0",
+  "description": "Proper lazy loading on embedded YouTube Videos.",
+  "main": "src/youtube-lazy-load.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alterebro/youtube-lazy-load.git"
+  },
+  "keywords": [
+    "youtube",
+    "lazy",
+    "load",
+    "embed",
+    "lazy-load",
+    "lazy-loading",
+    "video"
+  ],
+  "author": "Jorge Moreno (@alterebro)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alterebro/youtube-lazy-load/issues"
+  },
+  "homepage": "https://github.com/alterebro/youtube-lazy-load#readme"
+}
