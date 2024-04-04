@@ -19,6 +19,9 @@
 
 3. Done! Your YouTube Videos will now lazy load. In the case that JavaScript isn't enabled on the browser, a link to your YouTube video will display.
 
+## Example
+
+&rarr; [alterebro.github.io/youtube-lazy-load](https://alterebro.github.io/youtube-lazy-load/)
 
 ---
 
