@@ -8,7 +8,7 @@
 1. Add the `youtube-lazy-load.js` script to your web document
 
     ```html
-    <script src="/path/to/youtube-lazy-load.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alterebro/youtube-lazy-load/src/youtube-lazy-load.js"></script>
     ```
 
 2. Create any link to your YouTube Video with the <code>data-youtube-lazy</code> attribute

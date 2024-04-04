@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>...</title>
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: .9rem;
+    font-weight: 400;
+    color: #444;
+    line-height: 1.6;
+    width: 90%;
+    max-width: 42rem;
+    margin: 2rem auto;
+}
+
+h1 {
+    font-size: 150%;
+    font-weight: 700;
+    border-bottom: solid #ddd 1px;
+}
+h3 {
+    font-size: 120%;
+    font-weight: 700;
+    border-bottom: solid #ddd 1px;
+    margin-top: 2rem;
+}
+ol {
+    padding: 0 0 0 1rem;
+}
+a {
+    color: #000;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+a:hover {
+    color: #000;
+}
+pre, code {
+    font-family : "Andale Mono", "Monaco", "Lucida Console", "Menlo", "Consolas", "Roboto Mono", "Liberation Mono", monospace;
+    background: #f0f0e0;
+    border-radius: .2rem;
+}
+pre {
+    overflow-x: scroll;
+    padding: .5rem;
+}
+code {
+    padding: 3px 5px;
+    font-size: 85%;
+}
+code strong {
+    background-color: rgba(0, 0, 0, .075);
+}
+hr {
+    margin: 2rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: solid #ddd 1px;
+}
+p.fill {
+    font-style: italic;
+    color: #999;
+}
+</style>
+</head>
+<body>
+    
+    <header>
+        <h1>Youtube Lazy Load</h1>
+        <p>Proper lazy loading on embedded YouTube Videos.</p>
+    </header>
+    <main>
+        <section>
+            <h3>How to Use It</h3>
+            <ol>
+                <li>
+                    <p>Add the <code>youtube-lazy-load.js</code> script to your web document</p>
+                    <pre><code>&lt;script src="<strong>https://cdn.jsdelivr.net/gh/alterebro/youtube-lazy-load/src/youtube-lazy-load.js</strong>"&gt;&lt;/script&gt;</code></pre>
+                </li>
+                <li>
+                    <p>Create any link to your YouTube Video with the <code>data-youtube-lazy</code> attribute</p>
+                    <pre><code>&lt;a href="https://www.youtube.com/watch?v=xa_zPPsMMgo" <strong>data-youtube-lazy</strong>&gt;YouTube Video&lt;/a&gt;</code></pre>
+                </li>
+                <li><p>Done! Your YouTube Videos will now lazy load. In the case that JavaScript isn't enabled on the browser, a link to your YouTube video will display.</p></li>
+            </ol>    
+        </section>
+        <section>
+            <h3>Example</h3>
+            <pre><code>&lt;a href="https://www.youtube.com/watch?v=xa_zPPsMMgo" <strong>data-youtube-lazy</strong>&gt;Barcelona Sants Timelapse Video&lt;/a&gt;</code></pre>
+            <p>
+                <a href="https://www.youtube.com/watch?v=xa_zPPsMMgo" data-youtube-lazy>Barcelona Sants Timelapse Video</a>
+            </p>
+        </section>
+    
+        <section>
+            <p>
+                When a YouTube video is embedded using its iframe embed code, the browser 
+                typically loads the video player and all associated scripts and resources 
+                immediately, regardless of whether the video is actually visible on the screen. 
+                This can lead to unnecessary overhead and slower page loading times, defeating 
+                the purpose of lazy loading.
+            </p>
+            <p>
+                Using as example this page itself which has 3 YouTube videos embedded, here's 
+                the difference of data load using the <code>youtube-lazy-load</code> or not.
+            </p>
+            <p>
+                <strong>Iframe embedding without the script</strong>
+            </p>
+            <pre><code>62 requests / 3.5 MB transferred / 11.3 MB resources / Finish: 3.51 s</code></pre>
+            <p>
+                <strong>Using the <code>youtube-lazy-load</code> script</strong>
+            </p>
+            <pre><code>4 requests / 31.6 kB transferred / 31.1 kB resources / Finish: 134 ms</code></pre>
+        </section>
+
+        <section>
+            <h3>How It Works</h3>
+            <p>This script facilitates the lazy loading of embedded YouTube videos on a webpage. Here's a general overview of what it does:</p>
+            <ol>
+                <li><strong>Initialization</strong> It waits for the DOM content to be fully loaded before executing the script.</li>
+                <li><strong>Unique Identifier Generation</strong> It generates a unique identifier for the lazy-loaded YouTube elements to avoid conflicts with other elements on the page.</li>
+                <li><strong>Styling</strong> It defines CSS styles for the lazy-loaded YouTube elements, including setting a placeholder background color and position, and adding a play button overlay.</li>
+                <li><strong>Thumbnail Generation</strong> It generates a thumbnail image URL for each YouTube video using the video's ID.</li>
+                <li><strong>iFrame Creation</strong> It creates an iframe element for each YouTube video, setting attributes such as the video's source URL, title, and various permissions.</li>
+                <li><strong>Lazy Loading Trigger</strong> It listens for clicks on elements marked with a specific attribute (<code>data-youtube-lazy</code>) that signify they should trigger lazy loading of the associated YouTube video.</li>
+                <li><strong>Replacement of Placeholder with iFrame</strong> When the trigger element is clicked, it replaces the trigger element with the generated iframe containing the YouTube video.</li>
+                <li><strong>Intersection Observer</strong> It employs the Intersection Observer API to detect when lazy-loaded YouTube elements become visible in the viewport. Upon intersection, it sets the background image of the element to the thumbnail URL.</li>
+            </ol>
+            <p>Overall, this script allows YouTube videos to be loaded on demand, improving page load performance by deferring the loading of video content until it's necessary, and also optimizing bandwidth usage.</p>
+        </section>
+
+        <section>
+            <h3>Misc</h3>
+            <p>
+                Now I'll fill the page with some content in order to check whether the loading 
+                lazyness of the video preview images below are working or not... This an be seen on
+                the Browser Developer Tools (Network Tab).
+            </p>
+            <p>(Scroll Down...)</p>
+            <p class="fill">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue eros, eleifend ultricies augue eu, ultrices posuere arcu. Quisque ultrices posuere lectus, nec efficitur dui venenatis quis. Nam in tempus neque. Sed eu dui mi. Etiam euismod eget nisi eu convallis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed non condimentum risus. Aenean malesuada nulla diam, at consectetur libero condimentum sed. Nunc vitae sagittis tortor. Maecenas lacus ex, viverra ut lacus eget, commodo tristique velit. Aenean dictum tincidunt aliquam. Nullam pretium nisi urna, eu lobortis risus dapibus vitae. Donec accumsan pretium pulvinar. Quisque non massa ullamcorper, tincidunt neque vitae, semper erat.
+            </p>
+            <p class="fill">
+                Donec ut magna bibendum, bibendum eros vitae, imperdiet nisl. Maecenas commodo ex sit amet elit ornare convallis. Morbi risus augue, maximus non dignissim suscipit, vulputate vel velit. Morbi mattis felis vel efficitur rutrum. In interdum justo vitae neque pretium facilisis. Curabitur ac lacus ante. Integer ut cursus purus. Etiam ut bibendum lacus. Nam ullamcorper urna et neque egestas, ac auctor mauris porta. Fusce maximus, est quis dignissim ullamcorper, nibh lorem facilisis orci, a rhoncus nunc diam in nibh. Vivamus eros quam, tincidunt a risus eu, consequat vestibulum tortor. Ut vel condimentum augue. Cras maximus, ante at consequat volutpat, nisi velit consectetur arcu, eu sodales sapien nibh in sem. In fermentum odio sed est dictum, sit amet pulvinar elit luctus.
+            </p>
+            <p>
+                <a href="https://www.youtube.com/watch?v=DBf_CluIMcA&t=36s" data-youtube-lazy>Two [div/] elements in the fight of reaching the infamous z-index:99999; / CSS animation</a>
+            </p>
+
+            <p>Some extra bogus content below plus another lazy loaded YouTube Video embedded. (Scroll Down...)</p>
+            <p class="fill">
+                Nam orci arcu, semper in libero quis, pellentesque faucibus nisi. Aenean posuere aliquet elementum. Nunc gravida tellus id arcu accumsan semper. Aenean mauris purus, lobortis a tristique non, semper sed dolor. Cras ornare pulvinar nulla. Duis tristique eros vel urna scelerisque malesuada. Proin id venenatis nisl.
+            </p>
+            <p class="fill">
+                Sed et feugiat ipsum. Aliquam erat volutpat. Nulla eget sem sed enim mattis egestas. Nunc vitae orci at nibh feugiat convallis. Morbi vel augue sit amet nunc faucibus faucibus. Nullam sed felis nec mi aliquam ullamcorper. Pellentesque eget nulla orci. Mauris eget augue aliquam, aliquam nulla eget, euismod mi. Cras quis tincidunt ligula, at condimentum urna. Vivamus gravida rutrum lorem, ut consequat leo pulvinar id.
+            </p>
+            <p class="fill">
+                Fusce ornare justo eu mi luctus finibus. Fusce fringilla, mauris vel placerat sollicitudin, velit nibh tincidunt tortor, eu placerat quam est sit amet nunc. Nunc ornare id mi a posuere. Praesent id nulla commodo, ornare metus a, lobortis enim. Proin cursus est laoreet risus suscipit eleifend. Proin blandit metus in massa convallis semper. Nam id rhoncus nulla. Sed convallis elit lorem, sit amet pulvinar nisl semper at. Aliquam eget lacus est.
+            </p>
+            <p>
+                <a href="https://www.youtube.com/watch?v=nDeMfwuxzF8" data-youtube-lazy>Retour et Tour Video on YouTube</a>
+            </p>   
+        </section>
+    </main>
+    <footer>
+        <hr>
+        <p>
+            <a href="https://x.com/alterebro">@alterebro</a>
+        </p>
+    </footer>
+
+    
+<script src="https://cdn.jsdelivr.net/gh/alterebro/youtube-lazy-load/src/youtube-lazy-load.js"></script>
+</body>
+</html>
